@@ -72,13 +72,15 @@
 
       <div class="q-mt-xl custom-container">
         <div class="row">
-          <div class="col-12 col-sm-6 q-mb-md" align="center">
+          <div class="col-12 col-sm-4 q-mb-md" align="center">
             <q-img
-              src="images/img4.jpg"
+            
+              src="images/img5.jpg"
               style="max-width: 400px; max-height: 250px"
             />
           </div>
-          <div class="col-12 col-sm-6 q-pa-none">
+          <div class="col-12 col-sm-1 q-pa-none"></div>
+          <div class="col-12 col-sm-7 q-pa-none">
             <p class="text-h5 text-bold text-grey-8 q-px-sm">
               Petek Temizliği Nedir ve Neden Önemlidir?
             </p>
@@ -323,10 +325,23 @@ const callPhone = () => {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 /* Mobil ekranlarda (max-width: 768px) metni alt tarafa yerleştir */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .custom-container {
-    margin-left: 2px;
-    margin-right: 2px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+}
+@media (max-width: 1000px) {
+  .custom-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-container {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 .card-image {

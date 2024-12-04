@@ -3,69 +3,107 @@
     <!-- style="background-color: #d2d2d4;" -->
     <q-header class="bg-blue-9 glossy" >
       <q-toolbar>
-        <!-- <q-btn
-        v-if="$q.screen.lt.sm"
+        <q-btn
+        v-if="$q.screen.lt.md"
           flat
           dense
           round
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
-        /> -->
+        />
 
-        <q-toolbar-title>
-          <q-img src="/images/logo.jpeg" class="cursor-pointer" style="width:100px;"/>
+        <q-toolbar-title clickable @click="router.push('/')">
+          <q-img src="/images/logo.jpeg" class="cursor-pointer"  style="width:100px;"/>
           
         </q-toolbar-title>
         
        
-        <!-- <q-btn v-if="$q.screen.gt.sm" flat to="/" class="text-grey-2" label="Anasayfa"></q-btn>
+        <q-btn v-if="$q.screen.gt.sm" flat to="/" class="text-grey-2" label="Anasayfa"></q-btn>
         <q-btn
           v-if="$q.screen.gt.sm"
           class="text-grey-2"
           flat
-          to="/faq"
-          label="Sıkça Sorulan Sorular"
-        ></q-btn> -->
+          to="/petek-temizligi"
+          label="Petek TEMİZLİGİ"
+        ></q-btn>
+        <q-btn
+          v-if="$q.screen.gt.sm"
+          class="text-grey-2"
+          flat
+          to="/kombi-bakimi"
+          label="KOMBİ BAKIMI"
+        ></q-btn>
+        <q-btn
+          v-if="$q.screen.gt.sm"
+          class="text-grey-2"
+          flat
+          to="/kombi-arizasi"
+          label="KOMBİ ARIZASI"
+        ></q-btn>
         <q-space v-if="$q.screen.gt.sm" />
       </q-toolbar>
     </q-header>
 
-    <!-- <q-drawer
-    v-if="$q.screen.lt.sm && leftDrawerOpen===true"
+    <q-drawer
+    class="bg-grey-2"
+    v-if="$q.screen.lt.md && leftDrawerOpen===true"
       v-model="leftDrawerOpen"
       side="left" overlay behavior="desktop" bordered
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          
-        </q-item-label>
+      
 
-        <q-list>
-    <q-item v-for="link in essentialLinks" :key="link.title" tag="a" :href="link.link" clickable target="_blank">
+        <q-list class="q-mt-xl" style="margin-top:200px;">
+    <q-item class="bg-grey-3 q-mb-md"  v-for="link in essentialLinks" :key="link.title" :to="link.link" clickable>
       <q-item-section avatar>
         <q-icon :name="link.icon" />
       </q-item-section>
       <q-item-section>
-        <q-item-label>{{ link.title }}</q-item-label>
-        <q-item-label caption>{{ link.caption }}</q-item-label>
+        <q-item-label class="text-h6 text-bold"><strong>{{ link.title }}</strong></q-item-label>
+        
       </q-item-section>
     </q-item>
   </q-list>
-      </q-list>
-    </q-drawer> -->
+      
+    </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
     <q-footer class="bg-transparent flat no-shadow">
-      <q-toolbar>
-        <q-toolbar-title>
-          <p align="center" class="text-grey-9 text-caption">
-            <b> © {{ new Date().getFullYear() }} Celep Kombi Servis - Tüm Hakları Saklıdır</b>
+
+      <div class="q-mt-lg" align="center">
+        <q-card
+          class="my-card text-white"
+          style="
+            background: radial-gradient(circle, #35a2ff 0%, #014a88 100%);
+       
+          "
+          
+        >
+          <q-card-section>
+            <div class="text-h5"><strong>CELEP KOMBİ SERVİSİ</strong></div>
+            <p class="text-body1 q-mt-md"><strong>Kombi Bakım/Onarımı ve Petek Temizliği İçin Bize Ulaşın</strong></p>
+            <q-chip
+              square
+              class="q-mt-sm cursor-pointer"
+              color="deep-orange"
+              text-color="white"
+              clickable
+              @click="callPhone"
+              icon="call"
+              size="lg"
+            >
+              0539 667 63 53
+            </q-chip>
+          </q-card-section>
+        </q-card>
+      </div>
+      <q-toolbar class="q-ma-none q-pa-none">
+        <q-toolbar-title >
+          <p align="center" class="text-grey-9 text-caption q-ma-none q-pa-none">
+            <b>Copyright © {{ new Date().getFullYear() }} Celep Kombi Servis - Tüm Hakları Saklıdır</b>
           </p>
         </q-toolbar-title>
       </q-toolbar>
@@ -77,49 +115,33 @@
 import { ref } from 'vue';
 import { useQuasar } from 'quasar';
 const $q= useQuasar();
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const essentialLinks = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'event',
-    link: 'https://quasar.dev'
+    title: 'ANASAYFA',
+    caption: 'Anasayfa',
+    icon: 'home',
+    link: '/home'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'event',
-    link: 'https://github.com/quasarframework'
+    title: 'PETEK TEMİZLİĞİ',
+    caption: 'Petek Temizliği',
+    icon: 'blinds',
+    link: '/petek-temizligi'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'event',
-    link: 'https://chat.quasar.dev'
+    title: 'KOMBİ BAKIMI',
+    caption: 'Kombi Bakımı',
+    icon: 'construction',
+    link: '/kombi-bakimi'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'event',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'event',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'event',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'event',
-    link: 'https://awesome.quasar.dev'
+    title: 'KOMBİ ARIZASI',
+    caption: 'Kombi Arızası',
+    icon: 'warning',
+    link: '/kombi-arizasi'
   }
 ];
 
@@ -128,4 +150,8 @@ const leftDrawerOpen = ref(false)
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
+
+const callPhone = () => {
+  window.location.href = "tel:05396676353";
+};
 </script>
